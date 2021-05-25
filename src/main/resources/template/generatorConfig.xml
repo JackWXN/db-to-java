@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<context id="testTables" targetRuntime="MyBatis3">
+		<!-- 指定生成的java文件的编码,没有直接生成到项目时中文可能会乱码 -->
+		<property name="javaFileEncoding" value="UTF-8"/>
+
+		<!-- 格式化java代码 -->
+		<property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+		<!-- 格式化XML代码 -->
+		<property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+
+		<!-- 生成的pojo，将implements Serializable-->
+<!--		<plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>-->
+
+		<!-- 集成lombok -->
+		<plugin type="com.wxn.generate.plugins.LombokPlugin">
+			<property name="hasLombok" value="true"/>
+		</plugin>
+
+<!--		&lt;!&ndash; 此处是将Example改名为Criteria 当然 想改成什么都行~    &ndash;&gt;-->
+<!--		<plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">-->
+<!--			<property name="searchString" value="Example$" />-->
+<!--			&lt;!&ndash; 替换后 <property name="replaceString" value="Criteria" /> &ndash;&gt;-->
+<!--			<property name="replaceString" value="Query" />-->
+<!--		</plugin>-->
+
+<!--		&lt;!&ndash; 此处是将UserMapper.xml改名为UserDao.xml 当然 想改成什么都行~ &ndash;&gt;-->
+<!--		<plugin type="com.wxn.generate.plugins.RenameSqlMapperPlugin">-->
+<!--			<property name="searchString" value="Mapper" />-->
+<!--			<property name="replaceString" value="Dao" />-->
+<!--		</plugin>-->
+
+<!--		&lt;!&ndash; 此处是将UserMapper改名为UserDao 接口 当然 想改成什么都行~  &ndash;&gt;-->
+<!--		<plugin type="com.wxn.generate.plugins.RenameJavaMapperPlugin">-->
+<!--			<property name="searchString" value="Mapper$" />-->
+<!--			<property name="replaceString" value="Dao" />-->
+<!--		</plugin>-->
+
+		<commentGenerator>
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+
+
+		<!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="${url}" userId="${user}"
+			password="${password}">
+			<property name="nullCatalogMeansCurrent" value="true"/>
+			<!--设置为 true 可以获取 tables 信息, 解决生成文件缺少 xxxByPrimaryKey 的问题 -->
+			<property name="useInformationSchema" value="true"/>
+		</jdbcConnection>
+
+		<!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
+			NUMERIC 类型解析为java.math.BigDecimal -->
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- targetProject:生成PO类的位置 -->
+		<javaModelGenerator targetPackage="com.${packageName}${packageName2}.entity" targetProject="${target}">
+			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="false" />
+			<!-- 从数据库返回的值被清理前后的空格 -->
+			<property name="trimStrings" value="true" />
+			<!-- 增加基础bean的继承操作，将通用属性集成到BaseEntity内部 -->
+<!--			<property name="rootClass" value="com.wxn.mybatis.model.base.BaseEntity"/>-->
+		</javaModelGenerator>
+        <!-- targetProject:mapper映射文件生成的位置 -->
+		<sqlMapGenerator targetPackage="com.${packageName}${packageName2}.dao.mapper" targetProject="${target}">
+			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+		<!-- targetPackage：mapper接口生成的位置 -->
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.${packageName}${packageName2}.dao" targetProject="${target}">
+			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+
+		<!-- 指定数据库表 -->
+	    ${tableConfig}
+
+	</context>
+</generatorConfiguration>

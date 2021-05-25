@@ -1,0 +1,56 @@
+package com.${packageName}${packageName2}.service.impl;
+
+import com.${packageName}${packageName2}.model.${modelUpName};
+import com.${packageName}${packageName2}.service.${modelUpName}Service;
+import com.${packageName}${packageName2}.dao.${modelUpName}Mapper;
+import com.ccx.util.page.Page;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.*;
+
+@Service
+public class ${modelUpName}ServiceImpl implements ${modelUpName}Service {
+	
+	@Autowired
+    private ${modelUpName}Mapper ${modelName}Mapper;
+	
+	@Override
+	public ${modelUpName} getById(${keyType} id) {
+		return ${modelName}Mapper.selectByPrimaryKey(id);
+	}
+	
+	@Override
+	public List<${modelUpName}> getList() {
+		return null;
+	}
+	
+	@Override
+	public List<${modelUpName}> getList(${modelUpName} model) {
+		return null;
+	}
+	
+	@Override
+	public Page<${modelUpName}> getPageList(Page<${modelUpName}> page) {
+		return null;
+	}
+	
+	@Override
+	public ${modelUpName} getByModel(${modelUpName} model) {
+		return null;
+	}
+
+	@Override
+	public int save(${modelUpName} model) {
+		return ${modelName}Mapper.insert(model);
+	}
+
+	@Override
+	public int update(${modelUpName} model) {
+		return ${modelName}Mapper.updateByPrimaryKey(model);
+	}
+	
+	@Override
+	public int deleteById(${keyType} id) {
+		return ${modelName}Mapper.deleteByPrimaryKey(id);
+	}
+}

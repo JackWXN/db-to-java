@@ -1,0 +1,79 @@
+package com.${packageName}${packageName2}.service;
+
+import com.${packageName}${packageName2}.model.${modelUpName};
+import com.ccx.util.page.Page;
+import java.util.*;
+
+public interface ${modelUpName}Service {
+	
+	/**
+     * 根据主键获取
+     * @author wxn
+     * @date ${dateParam}
+     * @param id 主键id
+     * @return ${modelUpName}
+     */
+	${modelUpName} getById(${keyType} id);
+	
+	/**
+     * 获取所有列表
+     * @author wxn
+     * @date ${dateParam}
+     * @return List<${modelUpName}>
+     */
+	List<${modelUpName}> getList();
+	
+	/**
+     * 根据条件获取列表
+     * @author wxn
+     * @date ${dateParam}
+     * @param model 条件
+     * @return List<${modelUpName}>
+     */
+	List<${modelUpName}> getList(${modelUpName} model);
+	
+	/**
+     * 根据条件分页获取列表
+     * @author wxn
+     * @date ${dateParam}
+     * @param page 分页条件
+     * @return Page<${modelUpName}>
+     */
+	Page<${modelUpName}> getPageList(Page<${modelUpName}> page);
+	
+	/**
+     * 根据条件获取某条数据
+     * @author wxn
+     * @date ${dateParam}
+     * @param model 条件
+     * @return ${modelUpName}
+     */
+	${modelUpName} getByModel(${modelUpName} model);
+
+	/**
+     * 新增
+     * @author wxn
+     * @date ${dateParam}
+     * @param model 条件
+     * @return int
+     */
+	int save(${modelUpName} model);
+
+	/**
+     * 更新
+     * @author wxn
+     * @date ${dateParam}
+     * @param model 条件
+     * @return int
+     */
+	int update(${modelUpName} model);
+	
+	/**
+     * 根据主键id删除
+     * @author wxn
+     * @date ${dateParam}
+     * @param id 主键
+     * @return int
+     */
+	int deleteById(${keyType} id);
+}
