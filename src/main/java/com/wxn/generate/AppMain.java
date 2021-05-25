@@ -5,6 +5,8 @@ import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
@@ -149,11 +151,11 @@ public class AppMain {
 		this.panel.add(this.userName);
 		this.TextuserName = new JTextField(user1);
 		this.TextuserName.setColumns(10);
-		this.TextuserName.setBounds(66, 38, 93, 15);
+		this.TextuserName.setBounds(66, 38, 93, 18);
 		this.panel.add(this.TextuserName);
 		this.textPassword = new JTextField(password1);
 		this.textPassword.setColumns(10);
-		this.textPassword.setBounds(66, 66, 93, 16);
+		this.textPassword.setBounds(66, 66, 93, 18);
 		this.panel.add(this.textPassword);
 		this.password = new JLabel("密    码:");
 		this.password.setBounds(10, 69, 48, 15);
@@ -200,6 +202,17 @@ public class AppMain {
 		this.outPath.setEditable(false);
 		this.outPath.setBounds(80, 60, 163, 16);
 		panel_1.add(this.outPath);
+		this.button = new JButton("点击复制");
+		this.button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent paramActionEvent) {
+				Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+				StringSelection selection = new StringSelection(AppMain.this.outPath.getText());
+				clipboard.setContents(selection, null);
+			}
+		});
+		this.button.setBounds(256, 60, 100, 16);
+		panel_1.add(this.button);
 //		this.packageName2 = new JTextField();
 //		this.packageName2.setColumns(10);
 //		this.packageName2.setBounds(80, 35, 113, 16);
@@ -225,7 +238,7 @@ public class AppMain {
 				}
 			}
 		});
-		this.chooseFilePath.setBounds(256, 35, 80, 16);
+		this.chooseFilePath.setBounds(256, 35, 100, 16);
 		panel_1.add(this.chooseFilePath);
 		this.lblcom = new JLabel("必须填写(例:xx.xx)");
 		this.lblcom.setBounds(256, 10, 200, 15);
@@ -298,10 +311,10 @@ public class AppMain {
 			}
 		});
 		this.btncontroller.setBounds(308, 10, 132, 23);
-		panel_2.add(this.btncontroller);
+//		panel_2.add(this.btncontroller);
 		this.btnservice = new JButton("生成service");
 		this.btnservice.setBounds(308, 54, 132, 23);
-		panel_2.add(this.btnservice);
+//		panel_2.add(this.btnservice);
 		this.btndaoMapper = new JButton("生成逆向工程");
 		this.btndaoMapper.setToolTipText("生成Model Mapper Xml Dao");
 		this.btndaoMapper.addActionListener(new ActionListener() {
